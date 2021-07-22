@@ -36,12 +36,12 @@ def check_all_messages(message):
 
     # Responses ------------------------------------------------
     response(long.greeting(), ['hello', 'hi', 'sup', 'hey', 'heyo', 'howdy', 'yo'], single_response=True)
-    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
+    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how', 'you'])
     response('Goodbye!', ['goodbye', 'bye', 'cya', 'later', 'caio', 'bye-bye'], single_response=True)
     response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
-    # print(highest_prob_list)
+    print(highest_prob_list)
 
     return long.unknown() if highest_prob_list[best_match] < 1 else best_match
 
