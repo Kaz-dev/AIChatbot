@@ -2,7 +2,7 @@
 
 This is a [Django](http://www.djangoproject.com) project that you can use as the starting point to develop your own and deploy it on an [OpenShift](https://github.com/openshift/origin) cluster.
 
-**NOTE:** This is the latest version of this example with Django 2.2 LTS which works with RHEL/Centos 8 and Python 3 only. If you are looking for the version for RHEL/Centos 7 or Python 2, it's in the [master branch](https://github.com/sclorg/django-ex/tree/master).
+**NOTE:** This version contains obsolete Django 1.11.x LTS which works with RHEL/Centos 7 and Python 2. Consider switching to RHEL/Centos 8 and Python 3 with Django 2.2.x LTS in [branch 2.2.x](https://github.com/sclorg/django-ex/tree/2.2.x).
 
 The steps in this document assume that you have access to an OpenShift deployment that you can deploy applications on.
 
@@ -54,7 +54,10 @@ To run this project in your development machine, follow these steps:
 
 1. (optional) Create and activate a [virtualenv](https://virtualenv.pypa.io/) (you may want to use [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/)).
 
-2. Ensure that the executable `pg_config` is available on your machine. You can check this using `which pg_config`. Otherwise, sqlite will be used.
+2. Ensure that the executable `pg_config` is available on your machine. You can check this using `which pg_config`. If not, install the dependency with one of the following.
+  - macOS: `brew install postgresql` using [Homebrew](https://brew.sh/)
+  - Ubuntu: `sudo apt-get install libpq-dev`
+  - [Others](https://stackoverflow.com/a/12037133/8122577)
 
 3. Fork this repo and clone your fork:
 
@@ -119,8 +122,8 @@ Templates give you full control of each component of your application.
 Sometimes your application is simple enough and you don't want to bother with templates. In that case, you can let OpenShift inspect your source code and create the required components automatically for you:
 
 ```bash
-$ oc new-app centos/python-36-centos7~https://github.com/sclorg/django-ex
-imageStreams/python-36-centos7
+$ oc new-app centos/python-35-centos7~https://github.com/sclorg/django-ex
+imageStreams/python-35-centos7
 imageStreams/django-ex
 buildConfigs/django-ex
 deploymentConfigs/django-ex
